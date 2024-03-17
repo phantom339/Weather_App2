@@ -1,30 +1,52 @@
 pipeline {
-    agent any tools {
+    agent any
+    tools {
+        // Define the Maven tool
         maven 'MAVEN_HOME'
     }
-        stage('package') {
+    
+    stages {
+        stage('Package') {
             steps {
-                bat 'mvn package'
+                // Use Maven to package the project
+                script {
+                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
+                        bat 'mvn package'
+                    }
+                }
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn install'
+                // Use Maven to install dependencies and build the project
+                script {
+                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
+                        bat 'mvn install'
+                    }
+                }
             }
         }
         
         stage('Test') {
             steps {
-                
-                bat 'mvn test'
+                // Use Maven to run tests
+                script {
+                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
+                        bat 'mvn test'
+                    }
+                }
             }
         }
         
         stage('Deploy') {
             steps {
-                
-                bat 'mvn deploy'
+                // Use Maven to deploy the project
+                script {
+                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
+                        bat 'mvn deploy'
+                    }
+                }
             }
         }
     }
