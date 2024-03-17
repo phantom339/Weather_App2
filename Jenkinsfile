@@ -1,62 +1,34 @@
 pipeline {
-    agent any
-    tools {
-        // Define the Maven tool
-        maven 'MAVEN_HOME'
-    }
-    
-    stages {
-        stage('Package') {
-            steps {
-                // Use Maven to package the project
-                script {
-                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
-                        bat 'mvn package'
-                    }
-                }
-            }
-        }
-
-        stage('Build') {
-            steps {
-                // Use Maven to install dependencies and build the project
-                script {
-                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
-                        bat 'mvn install'
-                    }
-                }
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                // Use Maven to run tests
-                script {
-                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
-                        bat 'mvn test'
-                    }
-                }
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Use Maven to deploy the project
-                script {
-                    withMaven(maven: 'MAVEN_HOME', mavenSettingsConfig: 'my-maven-settings') {
-                        bat 'mvn deploy'
-                    }
-                }
-            }
-        }
-    }
-    
-    post {
-        success {
-            echo 'Pipeline succeeded! Project built and deployed.'
-        }
-        failure {
-            echo 'Pipeline failed! Check logs for details.'
-        }
-    }
-}
+	agent any
+	tools {
+	maven 'MAVEN_HOME'
+	}
+	stages {
+	
+		stage ('Stage 1: My Package'){
+			steps {
+				bat 'mvn package'
+				}
+			}			
+		stage ('Stage 2: My Build'){
+			steps {
+				bat 'mvn install'
+				}
+			}
+		stage ('Stage 3: My Test'){
+			steps {
+				bat 'mvn test'
+				}
+			}
+		stage ('Stage 4: My deploy'){
+			steps {
+				bat 'mvn deploy'
+				}
+			}	
+		stage ('Stage Final: Build Success'){
+			steps {
+				echo  'Build Success!'
+				}
+			}
+		}
+	}
