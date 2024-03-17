@@ -1,36 +1,30 @@
 pipeline {
-    agent any
-    
-    stages {
-        stage('Checkout') {
-            steps {                
-                checkout scm
-            }
-        }
-        
+    agent any tools {
+        maven 'MAVEN_HOME'
+    }
         stage('package') {
             steps {
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn install'
+                bat 'mvn install'
             }
         }
         
         stage('Test') {
             steps {
                 
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
         
         stage('Deploy') {
             steps {
                 
-                sh 'mvn deploy'
+                bat 'mvn deploy'
             }
         }
     }
