@@ -22,7 +22,7 @@ pipeline {
 			}
 		stage ('Stage 4: My deploy'){
 			steps {
-				sh 'mvn deploy:deploy'
+				bat 'mvn deploy:deploy'
 				}
 			}	
 		stage ('Stage Final: Build Success'){
