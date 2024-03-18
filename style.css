@@ -13,9 +13,9 @@ body {
 
 .weather-info {
     background-color: #eaea37;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin-top: 20px; /* Added margin-top for better spacing */
 }
 
@@ -24,12 +24,12 @@ h1 {
 }
 
 .location {
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
 .temperature {
-    font-size: 36px;
+    font-size: 37px;
     font-weight: bold;
     margin-bottom: 10px;
 }
